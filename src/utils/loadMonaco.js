@@ -1,8 +1,15 @@
 import { loadScriptQueue } from './loadScript'
 import ELEMENT from 'element-ui'
 
+// @zgz 改为npm引入
+// 安装monaco-editor、monaco-editor-webpack-plugin
+import * as monaco from 'monaco-editor'
+// @zgz
+let monacoEidtor = monaco
+
 // monaco-editor单例
-let monacoEidtor
+// @zgz 注释下面1行
+// let monacoEidtor
 
 /**
  * 动态加载monaco-editor cdn资源
@@ -14,7 +21,7 @@ export default function loadMonaco(cb) {
     return
   }
 
-  const vs = 'https://lib.baomitu.com/monaco-editor/0.19.3/min/vs'
+  const vs = 'lib/monaco-editor_0.19.3_min_vs'
 
   // 使用element ui实现加载提示
   const loading = ELEMENT.Loading.service({
@@ -30,9 +37,9 @@ export default function loadMonaco(cb) {
   window.require.paths.vs = vs
 
   loadScriptQueue([
-    `${vs}/loader.js`,
-    `${vs}/editor/editor.main.nls.js`,
-    `${vs}/editor/editor.main.js`
+    `${vs}_loader.js`,
+    `${vs}_editor_editor.main.nls.js`,
+    `${vs}_editor_editor.main.js`
   ], () => {
     loading.close()
     // eslint-disable-next-line no-undef

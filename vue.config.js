@@ -41,9 +41,10 @@ module.exports = {
   productionSourceMap: false,
   configureWebpack: {
     externals: {
-      vue: 'Vue',
-      'vue-router': 'VueRouter',
-      'element-ui': 'ELEMENT'
+      // @zgz 注释下面3行
+      // vue: 'Vue',
+      // 'vue-router': 'VueRouter',
+      // 'element-ui': 'ELEMENT'
     }
   },
   chainWebpack(config) {

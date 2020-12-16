@@ -1,7 +1,13 @@
 import loadScript from './loadScript'
 import ELEMENT from 'element-ui'
 
-let beautifierObj
+// @zgz 改为npm引入
+import * as jsBeautify from 'js-beautify'
+// @zgz
+let beautifierObj = jsBeautify
+
+// @zgz 注释下面1行
+// let beautifierObj
 
 export default function loadBeautifier(cb) {
   if (beautifierObj) {
@@ -17,7 +23,7 @@ export default function loadBeautifier(cb) {
     background: 'rgba(255, 255, 255, 0.5)'
   })
 
-  loadScript('https://lib.baomitu.com/js-beautify/1.10.2/beautifier.min.js', () => {
+  loadScript('lib/js-beautify_1.10.2_beautifier.min.js', () => {
     loading.close()
     // eslint-disable-next-line no-undef
     beautifierObj = beautifier

@@ -6,6 +6,12 @@ import '@/icons'
 import axios from 'axios'
 import Tinymce from '@/components/tinymce/index.vue'
 
+// @zgz
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+// @zgz
+Vue.use(ElementUI)
+
 Vue.component('tinymce', Tinymce)
 
 Vue.config.productionTip = false
