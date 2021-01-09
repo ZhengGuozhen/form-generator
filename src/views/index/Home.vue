@@ -46,7 +46,7 @@
     <div ref="centerBoard" class="center-board">
       <div class="action-bar">
         <!-- @zgz -->
-        <el-button icon="el-icon-video-play" type="text" @click="togglePreview">
+        <el-button icon="el-icon-full-screen" type="text" @click="togglePreview">
           预览
         </el-button>
         <el-button icon="el-icon-video-play" type="text" @click="run">
