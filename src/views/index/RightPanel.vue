@@ -658,6 +658,9 @@ import {
 } from '@/components/generator/config'
 import { saveFormConf } from '@/utils/db'
 
+// @zgz
+import { stateComponents } from '@/app/config'
+
 const dateTimeFormat = {
   date: 'yyyy-MM-dd',
   week: 'yyyy 第 WW 周',
@@ -801,6 +804,11 @@ export default {
         {
           label: '选择型组件',
           options: selectComponents
+        },
+        // @zgz
+        {
+          label: '状态类数据组件',
+          options: stateComponents
         }
       ]
     },

@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <div class="left-board">
+    <div v-if="!preview" class="left-board">
       <div class="logo-wrapper">
         <div class="logo">
-          <img :src="logo" alt="logo"> Form Generator
-          <a class="github" href="https://github.com/JakHuang/form-generator" target="_blank">
+          <!-- <img :src="logo" alt="logo"> -->
+          用户定义界面 User Defined UI
+          <!-- <a class="github" href="https://github.com/JakHuang/form-generator" target="_blank">
             <img src="https://github.githubassets.com/pinned-octocat.svg" alt>
-          </a>
+          </a> -->
         </div>
       </div>
       <el-scrollbar class="left-scrollbar">
@@ -42,8 +43,12 @@
       </el-scrollbar>
     </div>
 
-    <div class="center-board">
+    <div ref="centerBoard" class="center-board">
       <div class="action-bar">
+        <!-- @zgz -->
+        <el-button icon="el-icon-video-play" type="text" @click="togglePreview">
+          预览
+        </el-button>
         <el-button icon="el-icon-video-play" type="text" @click="run">
           运行
         </el-button>
@@ -91,6 +96,7 @@
     </div>
 
     <right-panel
+      v-if="!preview"
       :active-data="activeData"
       :form-conf="formConf"
       :show-field="!!drawingList.length"
@@ -149,6 +155,9 @@ import {
 } from '@/utils/db'
 import loadBeautifier from '@/utils/loadBeautifier'
 
+// @zgz
+import { stateComponents } from '@/app/config'
+
 let beautifier
 const emptyActiveData = { style: {}, autosize: {} }
 let oldActiveId
@@ -188,6 +197,12 @@ export default {
       activeData: drawingDefalut[0],
       saveDrawingListDebounce: debounce(340, saveDrawingList),
       saveIdGlobalDebounce: debounce(340, saveIdGlobal),
+
+      // @zgz
+      preview: false,
+      // @zgz
+      stateComponents,
+
       leftComponents: [
         {
           title: '输入型组件',
@@ -200,6 +215,11 @@ export default {
         {
           title: '布局型组件',
           list: layoutComponents
+        },
+        // @zgz
+        {
+          title: '状态类数据组件',
+          list: stateComponents
         }
       ]
     }
@@ -455,6 +475,16 @@ export default {
       this.drawingList = deepClone(data.fields)
       delete data.fields
       this.formConf = data
+    },
+    togglePreview() {
+      this.preview = !this.preview
+      this.$nextTick(() => {
+        if (this.preview) {
+          this.$refs.centerBoard.style.margin = '0'
+        } else {
+          this.$refs.centerBoard.style.margin = '0 350px 0 260px'
+        }
+      })
     }
   }
 }
