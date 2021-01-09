@@ -1,5 +1,8 @@
 const path = require('path')
 
+// @zgz
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+
 const minify = process.env.NODE_ENV === 'development' ? false : {
   collapseWhitespace: true,
   removeComments: true,
@@ -45,7 +48,13 @@ module.exports = {
       // vue: 'Vue',
       // 'vue-router': 'VueRouter',
       // 'element-ui': 'ELEMENT'
-    }
+    },
+    // @zgz
+    plugins: [
+      new MonacoWebpackPlugin({
+        languages: ['javascript', 'css', 'html', 'typescript', 'json']
+      })
+    ]
   },
   chainWebpack(config) {
     // set svg-sprite-loader
