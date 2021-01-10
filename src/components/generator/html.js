@@ -110,6 +110,26 @@ const layouts = {
     </el-row>`
     str = colWrapper(scheme, str)
     return str
+  },
+  // @zgz
+  colFormItem_zgz(scheme) {
+    const config = scheme.__config__
+    let labelWidth = ''
+    let label = `label="${config.label}"`
+    if (config.labelWidth && config.labelWidth !== confGlobal.labelWidth) {
+      labelWidth = `label-width="${config.labelWidth}px"`
+    }
+    if (config.showLabel === false) {
+      labelWidth = 'label-width="0"'
+      label = ''
+    }
+    const required = !ruleTrigger[config.tag] && config.required ? 'required' : ''
+    const tagDom = tags[config.tag] ? tags[config.tag](scheme) : null
+    let str = `<el-form-item ${labelWidth} ${label}>
+        <${config.tag}/>
+      </el-form-item>`
+    str = colWrapper(scheme, str)
+    return str
   }
 }
 

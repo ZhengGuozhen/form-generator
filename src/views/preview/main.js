@@ -1,18 +1,33 @@
+/* eslint-disable */
+
 // import Vue from 'vue'
 // @zgz Vue的compiler模式和runtime模式
 import Vue from 'vue/dist/vue.esm.js'
+
 import { loadScriptQueue } from '@/utils/loadScript'
 import axios from 'axios'
 import Tinymce from '@/components/tinymce/index.vue'
 
+Vue.component('tinymce', Tinymce)
+Vue.prototype.$axios = axios
+
 // @zgz
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-// @zgz
 Vue.use(ElementUI)
 
-Vue.component('tinymce', Tinymce)
-Vue.prototype.$axios = axios
+// @zgz
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+Vue.use(VXETable)
+
+// @zgz
+import demoTag from '@/app/demoTag'
+import demoTable from '@/app/demoTable'
+// @zgz 注册全局组件
+Vue.component('demoTag', demoTag)
+Vue.component('demoTable', demoTable)
 
 const $previewApp = document.getElementById('previewApp')
 const childAttrs = {

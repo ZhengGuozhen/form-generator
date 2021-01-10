@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router'
@@ -9,8 +11,13 @@ import Tinymce from '@/components/tinymce/index.vue'
 // @zgz
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-// @zgz
 Vue.use(ElementUI)
+
+// @zgz
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+Vue.use(VXETable)
 
 Vue.component('tinymce', Tinymce)
 
